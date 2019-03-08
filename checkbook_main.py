@@ -30,7 +30,6 @@ def action_statement():
             ''')
         action_statement()
 
-
 def make_deposit():
     #asks the user how much they would like to deposit
     deposit_amount = float(input('''
@@ -61,9 +60,17 @@ def make_withdrawal():
 
 def current_balance():
     #displays the current balance of the account
+
+    transaction_history = open("transaction_hitory.txt", 'r')  # location of the text file
+    lines = transaction_history.readlines()  # i am reading lines here
+    counter = 0  # counter update each time number is entered
+    for line in lines:  # taking each line
+        conv_float = float(line)  # converting string to float
+        counter = counter + conv_float  # update counter
     print('''
-    Your current balance is {}
-    '''.format(a_file_will_go_here.txt))
+    Your current balance is ${:0.2f}'''.format(counter))
+
+    continue_statement()
 
 def continue_statement():
     continue_program = input('''
