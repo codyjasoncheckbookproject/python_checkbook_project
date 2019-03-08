@@ -31,19 +31,25 @@ def make_deposit():
     #asks the user how much they would like to deposit
     deposit_amount = float(input('''
     How much would you like to deposit?\n
-    '''))
+    $'''))
 
     with open("transaction_hitory.txt", "a") as th:
-        th.write("\ndeposit amount is ${}".format(deposit_amount))
-    
+        th.write("\n{}".format(deposit_amount))
+
+    print('''
+    You deposited ${}'''.format(deposit_amount))
+
 def make_withdrawal():
     #asks the user how much they would like to withdrawal    
     withdrawal_amount = float(input('''
     How much would you like to withdraw?\n
-    '''))
+    $'''))
 
     with open("transaction_hitory.txt", "a") as th:
-        th.write("\nwithdrawal amount is ${}".format(withdrawal_amount* -1)) 
+        th.write("\n{}".format(withdrawal_amount* -1)) 
+
+    print('''
+    You withdrew ${}'''.format(withdrawal_amount))
 
 def current_balance():
     #displays the current balance of the account
@@ -57,7 +63,6 @@ def exit_program():
     Thanks for your business, have a great day!
     ''')
 
-# transaction_history.txt needs to take in all the deposits and 
-# withdrawals and return the new balance on the following line in 
-# the txt. the newest balance that is listed in the transaction history 
-# will be the value that is taken as the current_balance()
+# transaction_history.txt needs to take in all the deposits and withdrawals and return 
+# the new balance on the following line in the txt. the newest balance that is listed in 
+# the transaction history will be the value that is taken as the current_balance()
