@@ -3,13 +3,16 @@ def welcome_statement():
     print('Welcome Customer!')
 
 def action_statement():
+    print('''-'''*45)
     prompt = int(input('''
     Would you like to:
     1) View current balance
     2) Make a withdrawal (debit)
     3) Make a deposit (credit)
     4) Exit
-    '''))
+    
+    Option: '''))
+    print('''-'''*45)
     # make any other choice invalid and then promt the user
     # for another action.
     if prompt == 1:
@@ -27,6 +30,7 @@ def action_statement():
             ''')
         action_statement()
 
+
 def make_deposit():
     #asks the user how much they would like to deposit
     deposit_amount = float(input('''
@@ -34,10 +38,12 @@ def make_deposit():
     $'''))
 
     with open("transaction_hitory.txt", "a") as th:
-        th.write("\n{}".format(deposit_amount))
+        th.write("\n{:0.2f}".format(deposit_amount))
 
     print('''
-    You deposited ${}'''.format(deposit_amount))
+    You deposited ${:0.2f}'''.format(deposit_amount))
+
+    continue_statement()
 
 def make_withdrawal():
     #asks the user how much they would like to withdrawal    
@@ -46,10 +52,12 @@ def make_withdrawal():
     $'''))
 
     with open("transaction_hitory.txt", "a") as th:
-        th.write("\n{}".format(withdrawal_amount* -1)) 
+        th.write("\n{:0.2f}".format(withdrawal_amount* -1)) 
 
     print('''
-    You withdrew ${}'''.format(withdrawal_amount))
+    You withdrew ${:0.2f}'''.format(withdrawal_amount))
+
+    continue_statement()
 
 def current_balance():
     #displays the current balance of the account
@@ -57,12 +65,24 @@ def current_balance():
     Your current balance is {}
     '''.format(a_file_will_go_here.txt))
 
+def continue_statement():
+    continue_program = input('''
+    Would you like to continue? (Y/N)
+    ''')
+    if continue_program.lower() == 'y' or continue_program.lower() == 'yes':
+        action_statement()
+    else:
+        exit_program()
+
 def exit_program():
     #exits out of the application
+    print('-'*45)
     print('''
     Thanks for your business, have a great day!
     ''')
 
+
+action_statement()
 # transaction_history.txt needs to take in all the deposits and withdrawals and return 
 # the new balance on the following line in the txt. the newest balance that is listed in 
 # the transaction history will be the value that is taken as the current_balance()
