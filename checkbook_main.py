@@ -3,15 +3,29 @@ def welcome_statement():
     print('Welcome Customer!')
 
 def action_statement():
-    print('''
+    prompt = int(input('''
     Would you like to:
     1) View current balance
     2) Make a withdrawal (debit)
     3) Make a deposit (credit)
     4) Exit
-    ''')
+    '''))
     # make any other choice invalid and then promt the user
     # for another action.
+    if prompt == 1:
+        current_balance()
+    elif prompt == 2:
+        make_withdrawal()
+    elif prompt == 3:
+        make_deposit()
+    elif prompt == 4:
+        exit_program()
+    else:
+        print('''
+        Not a valid selection\n
+        Please choose 1, 2, 3, or 4
+            ''')
+        action_statement()
 
 def make_deposit():
     #asks the user how much they would like to deposit
@@ -37,7 +51,7 @@ def current_balance():
     Your current balance is {}
     '''.format(a_file_will_go_here.txt))
 
-def exit():
+def exit_program():
     #exits out of the application
     print('''
     Thanks for your business, have a great day!
