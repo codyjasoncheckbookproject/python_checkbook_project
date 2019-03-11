@@ -1,13 +1,23 @@
 
 def welcome_statement():
-    format_print()
-    print('''
-    Welcome Customer!''')
+    print('Welcome Customer!')
 
 def format_print():
     print('-'*50)
 
+def invalid_selection_message():
+    print('''
+    Not a valid selection\n
+    Please choose 1, 2, 3, 4, or 5
+    ''')
+
+def invalid_selection_message_int():
+    print('''
+    Not a valid selection please use integers
+    ''')
+
 def action_statement():
+    format_print()
     while True:
         try:
             prompt = int(input('''
@@ -15,7 +25,8 @@ def action_statement():
     1) View current balance
     2) Make a withdrawal (debit)
     3) Make a deposit (credit)
-    4) Exit
+    4) Transaction history
+    5) Exit
     
     Option: '''))
             format_print()
@@ -23,10 +34,7 @@ def action_statement():
             # for another action.
             break
         except ValueError:
-            print('''
-    Not a valid selection\n
-    Please choose 1, 2, 3, or 4
-            ''')
+            invalid_selection_message()
             format_print()
         action_statement()
     if prompt == 1:
@@ -36,12 +44,11 @@ def action_statement():
     elif prompt == 3:
         make_deposit()
     elif prompt == 4:
+        transaction_history()
+    elif prompt == 5:
         exit_program()
     else:
-        print('''
-    Not a valid selection\n
-    Please choose 1, 2, 3, or 4
-            ''')
+        invalid_selection_message()
         format_print()
         action_statement()
 
@@ -54,9 +61,7 @@ def make_deposit():
     $'''))
             break
         except ValueError:
-            print('''
-    Not a valid selection please use integers
-            ''')
+            invalid_selection_message_int()
             format_print()
             make_deposit()
 
@@ -77,9 +82,7 @@ def make_withdrawal():
     $'''))
             break
         except ValueError:
-            print('''
-    Not a valid selection please use integers
-            ''')
+            invalid_selection_message_int()
             format_print()
             make_withdrawal()
 
@@ -103,6 +106,16 @@ def current_balance():
     print('''
     Your current balance is ${:0.2f}'''.format(counter))
 
+    continue_statement()
+
+def transaction_history():
+    transaction_history = open("transaction_hitory.txt", 'r')
+    lines = transaction_history.readlines()
+    newlines = '${}'.format('$'.join(lines))
+    print('''
+    Your transaction history is as follows:
+    ''')
+    print('{}'.format(newlines))
     continue_statement()
 
 def continue_statement():
